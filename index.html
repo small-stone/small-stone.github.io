@@ -173,7 +173,7 @@
 <p>一个很简单的办法就是，在渲染完成后，找到 class 为 <code>el-table__expand-icon</code> 的 div,然后根据需求隐藏掉，关键是怎么找到要隐藏的这些div。</p>
 <p>element 的 table data 属性有个特点，就是表格顺序和数组顺序 <strong>完全一致</strong>，所以我们可以利用这个特点，在 nextTick 后查找出满足条件的 <code>el-table__expand-icon</code> 的 div，再隐藏掉就可以。</p>
 <p>比如数组是这样<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            tableData:[</span><br><span class="line">                &#123;</span><br><span class="line">                    id:<span class="number">1</span>,</span><br><span class="line">                    list:[</span><br><span class="line">                        &#123;</span><br><span class="line">                            name:<span class="string">'beijing'</span></span><br><span class="line">                        &#125;,</span><br><span class="line">                        &#123;</span><br><span class="line">                            name:<span class="string">'上海'</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    ]</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    id:<span class="number">2</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>只有包含 list 的表格项需要有展开按钮，所以，在赋值后可以调用如下方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">_</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> expandIcon = <span class="keyword">this</span>.$refs.table.$el.querySelectorAll(<span class="string">".el-table__expand-icon"</span>);</span><br><span class="line">    <span class="keyword">this</span>.tableData.forEach(<span class="function">(<span class="params">rowData, index</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!rowData.list) &#123;</span><br><span class="line">            expandIcon[index].setAttribute(<span class="string">"style"</span>, <span class="string">"display:none"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>只有包含 list 的表格项需要有展开按钮，所以，在赋值后可以执行如下方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">_</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> expandIcon = <span class="keyword">this</span>.$refs.table.$el.querySelectorAll(<span class="string">".el-table__expand-icon"</span>);</span><br><span class="line">    <span class="keyword">this</span>.tableData.forEach(<span class="function">(<span class="params">rowData, index</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!rowData.list) &#123;</span><br><span class="line">            expandIcon[index].setAttribute(<span class="string">"style"</span>, <span class="string">"display:none"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <p>这样就可以啦~</p>
 
       
@@ -400,23 +400,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">vue,vue.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">vue、vue.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">vue vue.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">vue.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">vuevue.js</a>
               </li>
              
               <li class="article-tag-list-item">
