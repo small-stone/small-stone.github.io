@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://small-stone.github.io">
-  <title>Tag: vue.js | smallstone 的博客</title>
+  <title>vue 组件按需加载的三种方式 | smallstone 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="smallstone 的博客">
-<meta property="og:url" content="https://small-stone.github.io/tags/vue-js/index.html">
+  <meta name="description" content="面试被虐系列：vue 组件如何实现按需加载 一 vue-router 实现的路由懒加载链接在这里  关键1：可以将异步组件定义为返回一个 Promise 的工厂函数 1const Foo = () =&amp;gt; Promise.resolve(&amp;#123; /* 组件定义对象 */ &amp;#125;)  关键2：Webpack &amp;gt; 2 的版本中，可以使用 动态 import 语法来定义代码分块点">
+<meta name="keywords" content="vue,vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue 组件按需加载的三种方式">
+<meta property="og:url" content="https://small-stone.github.io/2019/01/10/vue-组件按需加载的三种方式/index.html">
 <meta property="og:site_name" content="smallstone 的博客">
+<meta property="og:description" content="面试被虐系列：vue 组件如何实现按需加载 一 vue-router 实现的路由懒加载链接在这里  关键1：可以将异步组件定义为返回一个 Promise 的工厂函数 1const Foo = () =&amp;gt; Promise.resolve(&amp;#123; /* 组件定义对象 */ &amp;#125;)  关键2：Webpack &amp;gt; 2 的版本中，可以使用 动态 import 语法来定义代码分块点">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-10T16:20:06.949Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="smallstone 的博客">
+<meta name="twitter:title" content="vue 组件按需加载的三种方式">
+<meta name="twitter:description" content="面试被虐系列：vue 组件如何实现按需加载 一 vue-router 实现的路由懒加载链接在这里  关键1：可以将异步组件定义为返回一个 Promise 的工厂函数 1const Foo = () =&amp;gt; Promise.resolve(&amp;#123; /* 组件定义对象 */ &amp;#125;)  关键2：Webpack &amp;gt; 2 的版本中，可以使用 动态 import 语法来定义代码分块点">
   
     <link rel="alternative" href="/atom.xml" title="smallstone 的博客" type="application/atom+xml">
   
@@ -146,36 +151,96 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-vue-组件按需加载的三种方式" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      vue 组件按需加载的三种方式
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/10/vue-组件按需加载的三种方式/" class="archive-article-date">
+
+        
+        <a href="/2019/01/10/vue-组件按需加载的三种方式/" class="archive-article-date">
   	<time datetime="2019-01-10T13:36:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-10</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/10/vue-组件按需加载的三种方式/">vue 组件按需加载的三种方式</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>面试被虐系列：vue 组件如何实现按需加载</p>
+<h2 id="一-vue-router-实现的路由懒加载"><a href="#一-vue-router-实现的路由懒加载" class="headerlink" title="一 vue-router 实现的路由懒加载"></a>一 vue-router 实现的路由懒加载</h2><p><a href="https://router.vuejs.org/zh/guide/advanced/lazy-loading.html" target="_blank" rel="noopener">链接在这里</a></p>
+<ul>
+<li><p>关键1：可以将异步组件定义为返回一个 Promise 的工厂函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Foo = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">Promise</span>.resolve(&#123; <span class="comment">/* 组件定义对象 */</span> &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关键2：Webpack &gt; 2 的版本中，可以使用 <a href="https://webpack.docschina.org/api/module-methods/#import-" target="_blank" rel="noopener">动态 import</a> 语法来定义代码分块点 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>(<span class="string">'./Foo.vue'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="什么是-动态-import？"><a href="#什么是-动态-import？" class="headerlink" title="什么是 动态 import？"></a>什么是 动态 import？</h3><p>import(‘path/to/module’) -&gt; Promise<br>动态地加载模块。调用 import() 之处，被作为分离的模块起点，意思是，被请求的模块和它引用的所有子模块，会分离到一个单独的 chunk 中。</p>
+<blockquote>
+<p>ES2015 loader 规范 定义了 import() 方法，可以在运行时动态地加载 ES2015 模块。</p>
+</blockquote>
+<h3 id="如何配置其他参数？"><a href="#如何配置其他参数？" class="headerlink" title="如何配置其他参数？"></a>如何配置其他参数？</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单个目标</span></span><br><span class="line"><span class="keyword">import</span>(</span><br><span class="line">  <span class="comment">/* webpackChunkName: "my-chunk-name" */</span></span><br><span class="line">  <span class="comment">/* webpackMode: "lazy" */</span></span><br><span class="line">  <span class="string">'module'</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多个可能目标</span></span><br><span class="line"><span class="keyword">import</span>(</span><br><span class="line">  <span class="comment">/* webpackInclude: /\.json$/ */</span></span><br><span class="line">  <span class="comment">/* webpackExclude: /\.noimport\.json$/ */</span></span><br><span class="line">  <span class="comment">/* webpackChunkName: "my-chunk-name" */</span></span><br><span class="line">  <span class="comment">/* webpackMode: "lazy" */</span></span><br><span class="line">  <span class="string">`./locale/<span class="subst">$&#123;language&#125;</span>`</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关键点3 如何使用<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面2行代码，没有指定webpackChunkName，每个组件打包成一个js文件。</span></span><br><span class="line"><span class="keyword">const</span> ImportFuncDemo1 = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../components/ImportFuncDemo1'</span>)</span><br><span class="line"><span class="keyword">const</span> ImportFuncDemo2 = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../components/ImportFuncDemo2'</span>)</span><br><span class="line"><span class="comment">// 下面2行代码，指定了相同的webpackChunkName，会合并打包成一个js文件。</span></span><br><span class="line"><span class="keyword">const</span> ImportFuncDemo3 = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: 'ImportFuncDemo' */</span> <span class="string">'../components/ImportFuncDemo3'</span>)</span><br><span class="line"><span class="keyword">const</span> ImportFuncDemo4 = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: 'ImportFuncDemo' */</span> <span class="string">'../components/ImportFuncDemo4'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">'/importfuncdemo1'</span>,</span><br><span class="line">            name: <span class="string">'ImportFuncDemo1'</span>,</span><br><span class="line">            component: ImportFuncDemo1</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">'/importfuncdemo2'</span>,</span><br><span class="line">            name: <span class="string">'ImportFuncDemo2'</span>,</span><br><span class="line">            component: ImportFuncDemo2</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">'/importfuncdemo3'</span>,</span><br><span class="line">            name: <span class="string">'ImportFuncDemo3'</span>,</span><br><span class="line">            component: ImportFuncDemo3</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">'/importfuncdemo4'</span>,</span><br><span class="line">            name: <span class="string">'ImportFuncDemo4'</span>,</span><br><span class="line">            component: ImportFuncDemo4</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="二-vue-的异步组件"><a href="#二-vue-的异步组件" class="headerlink" title="二 vue 的异步组件"></a>二 vue 的异步组件</h2><p><a href="https://cn.vuejs.org/v2/guide/components-dynamic-async.html#%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6" target="_blank" rel="noopener">链接在这里</a><br>ps:这种写法似乎有点过时</p>
+<ul>
+<li>关键1：，Vue 允许你以一个工厂函数的方式定义你的组件，这个工厂函数会异步解析你的组件定义。Vue 只有在这个组件需要被渲染的时候才会触发该工厂函数，且会把结果缓存起来供未来重渲染。<blockquote>
+<p>什么是工厂函数？<br>工厂函数是一个最后返回值是对象的函数，但它既不是类，也不是构造函数。在JavaScript中，任何函数都可以返回一个对象。但当函数没有使用new关键字时，那它便是一个工厂函数。</p>
+</blockquote>
+</li>
+</ul>
+<p>官方示例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'async-example'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 向 `resolve` 回调传递组件定义</span></span><br><span class="line">    resolve(&#123;</span><br><span class="line">      template: <span class="string">'&lt;div&gt;I am async!&lt;/div&gt;'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>关键2：异步组件和 <a href="https://webpack.docschina.org/guides/code-splitting/" target="_blank" rel="noopener">webpack 的 code-splitting</a> 功能一起配合使用<blockquote>
+<p>什么是 webpack 的 code-splitting?<br>指将代码分离到每个 bundles/chunks 里面，你可以按需加载，而不是加载一个包含全部的 bundle。</p>
+</blockquote>
+</li>
+</ul>
+<p>示例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: <span class="string">'/promisedemo'</span>,</span><br><span class="line">    name: <span class="string">'PromiseDemo'</span>,</span><br><span class="line">    component: <span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">require</span>([<span class="string">'../components/PromiseDemo'</span>], resolve)</span><br><span class="line">    <span class="comment">// 这个特殊的 `require` 语法将会告诉 webpack</span></span><br><span class="line">    <span class="comment">// 自动将你的构建代码切割成多个包，这些包</span></span><br><span class="line">    <span class="comment">// 会通过 Ajax 请求加载</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结合第一种也可以这样写<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: <span class="string">'/promisedemo'</span>,</span><br><span class="line">    name: <span class="string">'PromiseDemo'</span>,</span><br><span class="line">    component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../components/PromiseDemo'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="三-webpack-提供的-require-ensure"><a href="#三-webpack-提供的-require-ensure" class="headerlink" title="三 webpack 提供的 require.ensure()"></a>三 webpack 提供的 require.ensure()</h2><p>ps: webpack 官方文档说此方法也已经被 import() 所取代<br><a href="https://webpack.docschina.org/api/module-methods#require-ensure" target="_blank" rel="noopener">链接在这里</a></p>
+<ul>
+<li>关键：require.ensure() 是 webpack 提供的语法，语法如下<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>.ensure(</span><br><span class="line">  dependencies: <span class="built_in">String</span>[], <span class="comment">//字符串构成的数组，声明 callback 回调函数中所需的所有模块。</span></span><br><span class="line">  callback: <span class="function"><span class="keyword">function</span>(<span class="params">require</span>),//只要加载好全部依赖，<span class="title">webpack</span> 就会执行此函数。<span class="title">require</span> 函数的实现，作为参数传入此函数。当程序运行需要依赖时，可以使用 <span class="title">require</span>(<span class="params"></span>) 来加载依赖。函数体可以使用此参数，来进一步执行 <span class="title">require</span>(<span class="params"></span>) 模块。</span></span><br><span class="line"><span class="function">  <span class="title">errorCallback</span>: <span class="title">function</span>(<span class="params">error</span>),//当 <span class="title">webpack</span> 加载依赖失败时，会执行此函数。</span></span><br><span class="line"><span class="function">  <span class="title">chunkName</span>: <span class="title">String</span>//由 <span class="title">require</span>.<span class="title">ensure</span>(<span class="params"></span>) 创建出的 <span class="title">chunk</span> 的名字。通过将同一个 <span class="title">chunkName</span> 传递给不同的 <span class="title">require</span>.<span class="title">ensure</span>(<span class="params"></span>) 调用，我们可以将它们的代码合并到一个单独的 <span class="title">chunk</span> 中，从而只产生一个浏览器必须加载的 <span class="title">bundle</span>。</span></span><br><span class="line"><span class="function">)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: <span class="string">'/promisedemo'</span>,</span><br><span class="line">    name: <span class="string">'PromiseDemo'</span>,</span><br><span class="line">    component: <span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">require</span>.ensure([], () =&gt; resolve(<span class="built_in">require</span>(<span class="string">'../components/PromiseDemo'</span>)), <span class="string">'demo'</span>)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,79 +256,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://small-stone.github.io/2019/01/10/vue-组件按需加载的三种方式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/07/手动实现一个-promise-all/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手动实现一个 Promise.all()</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/24/element-table/" class="archive-article-date">
-  	<time datetime="2018-12-24T07:58:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-24</time>
-</a>
-        </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/24/element-table/">element table type=&#39;expand&#39; 动态修改的方法</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vue.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">element</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">element table</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -286,9 +378,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
