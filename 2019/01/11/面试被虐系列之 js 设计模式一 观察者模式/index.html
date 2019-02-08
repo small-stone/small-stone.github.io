@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://small-stone.github.io">
-  <title>Tag: vue | smallstone 的博客</title>
+  <title>面试被虐系列之 js 设计模式一 观察者模式 | smallstone 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="smallstone 的博客">
-<meta property="og:url" content="https://small-stone.github.io/tags/vue/index.html">
+  <meta name="description" content="第一次在面试中听到 js 设计模式，真的是被虐的不要不要的，所以回来好好查了一下资料，弥补这方面的缺陷，本篇先说其中一种，观察者模式  什么是观察者模式？观察者模式是软件设计模式的一种。在此种模式中，一个目标对象管理所有相依于它的观察者对象，并且在它本身的状态改变时主动发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实时事件处理系统。  说的简单些，就是在数据发生改变时，对应">
+<meta name="keywords" content="js设计模式,观察者模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试被虐系列之 js 设计模式一 观察者模式">
+<meta property="og:url" content="https://small-stone.github.io/2019/01/11/面试被虐系列之 js 设计模式一 观察者模式/index.html">
 <meta property="og:site_name" content="smallstone 的博客">
+<meta property="og:description" content="第一次在面试中听到 js 设计模式，真的是被虐的不要不要的，所以回来好好查了一下资料，弥补这方面的缺陷，本篇先说其中一种，观察者模式  什么是观察者模式？观察者模式是软件设计模式的一种。在此种模式中，一个目标对象管理所有相依于它的观察者对象，并且在它本身的状态改变时主动发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实时事件处理系统。  说的简单些，就是在数据发生改变时，对应">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-30T09:14:14.277Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="smallstone 的博客">
+<meta name="twitter:title" content="面试被虐系列之 js 设计模式一 观察者模式">
+<meta name="twitter:description" content="第一次在面试中听到 js 设计模式，真的是被虐的不要不要的，所以回来好好查了一下资料，弥补这方面的缺陷，本篇先说其中一种，观察者模式  什么是观察者模式？观察者模式是软件设计模式的一种。在此种模式中，一个目标对象管理所有相依于它的观察者对象，并且在它本身的状态改变时主动发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实时事件处理系统。  说的简单些，就是在数据发生改变时，对应">
   
     <link rel="alternative" href="/atom.xml" title="smallstone 的博客" type="application/atom+xml">
   
@@ -146,124 +151,199 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-面试被虐系列之 js 设计模式一 观察者模式" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/10/vue-组件按需加载的三种方式/" class="archive-article-date">
-  	<time datetime="2019-01-10T13:36:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/10/vue-组件按需加载的三种方式/">vue 组件按需加载的三种方式</a>
+    <h1 class="article-title" itemprop="name">
+      面试被虐系列之 js 设计模式一 观察者模式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/01/11/面试被虐系列之 js 设计模式一 观察者模式/" class="archive-article-date">
+  	<time datetime="2019-01-11T02:33:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第一次在面试中听到 js 设计模式，真的是被虐的不要不要的，所以回来好好查了一下资料，弥补这方面的缺陷，本篇先说其中一种，观察者模式</p>
+<blockquote>
+<p>什么是观察者模式？<br>观察者模式是软件设计模式的一种。在此种模式中，一个目标对象管理所有相依于它的观察者对象，并且在它本身的状态改变时主动发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实时事件处理系统。</p>
+</blockquote>
+<p>说的简单些，就是在数据发生改变时，对应的处理函数自动执行。包括我们平时接触的dom事件. 也是js和dom之间实现的一种观察者模式.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">div.onclick  =  <span class="function"><span class="keyword">function</span> <span class="title">click</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">   alert ( <span class="string">''</span>click<span class="string">' )</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>观察者模式包含两类对象</p>
+<ul>
+<li>一个或者多个发布者对象：有重要的事情发生时，会通知订阅者 </li>
+<li>一个或者多个订阅者对象：它们追随一个或者多个发布者，监听它们的通知，并作出相应的反应。</li>
+</ul>
+<p>观察者对象中具有如下属性和方法：</p>
+<ul>
+<li>订阅者数组</li>
+<li>用于添加和删除订阅者的 addSubscriber() 和 removeSubscriber() 方法。</li>
+<li>publish() 方法，收受并传递数据给订阅者。</li>
+</ul>
+<p>直接上代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> observer = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//订阅者数组</span></span><br><span class="line">    <span class="keyword">this</span>.subscribers = []</span><br><span class="line">&#125;</span><br><span class="line">observer.prototype =&#123;</span><br><span class="line">    addSubscribers:<span class="function"><span class="keyword">function</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//添加订阅者</span></span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">this</span>.subscribers.includes(fn))&#123;</span><br><span class="line">            <span class="keyword">this</span>.subscribers.push(fn)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    removeSubscribers:<span class="function"><span class="keyword">function</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//移除订阅者</span></span><br><span class="line">         <span class="keyword">this</span>.subscribers = <span class="keyword">this</span>.subscribers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (item !== fn) &#123;</span><br><span class="line">                <span class="keyword">return</span> item;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    publish:<span class="function"><span class="keyword">function</span>(<span class="params">data,context</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//发布消息</span></span><br><span class="line">        <span class="keyword">var</span> scope = context || <span class="built_in">window</span></span><br><span class="line">        <span class="keyword">this</span>.subscribers.forEach(<span class="function"><span class="params">item</span>=&gt;</span>&#123;</span><br><span class="line">            item.call(scope,data)</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样一个发布器就做好了。然后我们来实现小明，小红订阅报纸的功能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> baoshe = <span class="keyword">new</span> observer() <span class="comment">//一个报社</span></span><br><span class="line"><span class="keyword">var</span> xiaoming = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'xiaoming read'</span> + data);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> xiaohong = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'xiaohong read'</span> + data);</span><br><span class="line">&#125;</span><br><span class="line">baoshe.addSubscribers(xiaoming) <span class="comment">//老板我要订报纸</span></span><br><span class="line">baoshe.addSubscribers(xiaohong) <span class="comment">//老板我也要</span></span><br><span class="line"></span><br><span class="line">baoshe.publish(<span class="string">'发新的报纸啦~'</span>)</span><br><span class="line"></span><br><span class="line">baoshe.removeSubscribers(xiaoming) <span class="comment">//老板我很穷，我不要报纸了</span></span><br><span class="line"></span><br><span class="line">baoshe.publish(<span class="string">'又发新的报纸啦~'</span>)</span><br></pre></td></tr></table></figure>
+<p>这样就利用原型实现了一个简单的 发布/订阅 的观察者模式<br>当然这这是其中一种方法，还有 回调函数 和 对象的方式来实现</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">js设计模式</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vue.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">观察者模式</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://small-stone.github.io/2019/01/11/面试被虐系列之 js 设计模式一 观察者模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
+<nav id="article-nav">
+  
+    <a href="/2019/01/11/我的2018/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          我的2018
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/10/vue-组件按需加载的三种方式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue 组件按需加载的三种方式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/24/element-table/" class="archive-article-date">
-  	<time datetime="2018-12-24T07:58:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-24</time>
-</a>
-        </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/24/element-table/">element table type=&#39;expand&#39; 动态修改的方法</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vue.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">element</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">element table</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -286,9 +366,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
