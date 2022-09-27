@@ -1,0 +1,15 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/small-stone/small-stone.github.io.git",
+  "author": "small-stone",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.51"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  }
+}
