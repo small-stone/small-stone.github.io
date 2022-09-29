@@ -6,7 +6,8 @@
   "author": "small-stone <smallstone@github.com>",
   "license": "MIT",
   "devDependencies": {
-    "vuepress": "^1.9.7"
+    "vuepress": "^1.9.7",
+    "vuepress-theme-gungnir": "^0.3.0"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
