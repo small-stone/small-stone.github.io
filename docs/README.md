@@ -1,3 +1,3 @@
-# test
+# my blog
 
-> tst
+[博客地址](https://small-stone.github.io/)

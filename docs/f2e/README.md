@@ -1,16 +1,16 @@
 # Typescript
 
-## 常见类型
+## 基础类型
 
-### 基本类型
+### 原始类型
 
-js 中只有 3 个原始类型，`string`、`number`、`boolean`，每一个类型在 TypeScript 中都有对应的类型。他们的名字跟你在 JavaScript 中使用 typeof 操作符得到的结果是一样的。
+js 中的原始类型有`number`、`string`、`boolean`、`null`、`undefined`、`symbol` 每一个类型在 TypeScript 中都有对应的类型。他们的名字跟你在 JavaScript 中使用 typeof 操作符得到的结果是一样的。
 
 ::: tip 类型名 String ，Number 和 Boolean （首字母大写）也是合法的，但它们是一些非常少见的特殊内置类型。所以类型总是使用 string ，number 或者 boolean 。
 
 :::
 
-### 数组（Array）
+### 数组
 
 声明一个类似于 `[1, 2, 3]` 的数组类型，需要用到语法 `number[]`。这种写法和`Array<number>`，是一样的。
 
@@ -18,15 +18,102 @@ js 中只有 3 个原始类型，`string`、`number`、`boolean`，每一个类�
 
 :::
 
-### 变量上的类型注解
+### 对象类型
 
-使用 `const`、`var` 或 `let` 声明一个变量时，你可以选择性的添加一个类型注解，显式指定变量的类型：
+定义一个对象类型，我们只需要简单的列出它的属性和对应的类型。
 
 ```ts
-let myName: string = "Alice";
+// The parameter's type annotation is an object type
+function printCoord(pt: { x: number; y: number }) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+printCoord({ x: 3, y: 7 });
 ```
 
-不过大部分时候，这不是必须的。因为 TypeScript 会自动推断类型。
+我们给参数添加了一个类型，该类型有两个属性, x 和 y，两个都是 number 类型。你可以使用`,`或者 `;` 分开属性，最后一个属性的分隔符加不加都行
+
+每个属性对应的类型是可选的，如果不指定，默认使用 `any` 类型。
+
+#### 可选属性
+
+对象类型可以指定一些甚至所有的属性为可选的，只需要在属性名后添加一个 ?
+
+```ts
+function printName(obj: { first: string; last?: string }) {
+  // ...
+}
+// Both OK
+printName({ first: "Bob" });
+printName({ first: "Alice", last: "Alisson" });
+```
+
+### 元组类型
+
+元组最重要的特性是可以限制数组元素的个数和类型，它特别适合用来实现多值返回。比较常见使用元组的场景是 React Hooks, 它的返回值类型是一个元组类型
+
+```ts
+(state: State) => [State, SetState];
+```
+
+::: tip 数组类型的值只有显示添加了元组类型注解后（或者使用 as const，声明为只读元组），TypeScript 才会把它当作元组，否则推荐出来的类型就是普通的数组类型
+
+:::
+
+### 特殊类型
+
+#### any
+
+any 指的是一个任意类型，它是官方提供的一个选择性绕过静态类型检测的作弊方式。
+
+我们可以对被注解为 any 类型的变量进行任何操作，包括获取事实上并不存在的属性、方法，并且 TypeScript 还无法检测其属性是否存在、类型是否正确。
+
+#### unknown
+
+主要用来描述类型并不确定的变量。
+
+比如在多个 if else 条件分支场景下，它可以用来接收不同条件下类型各异的返回值的临时变量，如下代码所示：
+
+```ts
+let result: unknown;
+if (x) {
+  result = x();
+} else if (y) {
+  result = y();
+}
+```
+
+与 any 不同的是，unknown 在类型上更安全。比如我们可以将任意类型的值赋值给 unknown，但 unknown 类型的值只能赋值给 unknown 或 any
+
+使用 unknown 后，TypeScript 会对它做类型检测。但是，如果不缩小类型，我们对 unknown 执行的任何操作都报错
+
+```ts
+let result: unknown;
+result.toFixed(); // 提示 ts(2571)
+```
+
+而所有的类型缩小手段对 unknown 都有效
+
+```ts
+let result: unknown;
+if (typeof result === "number") {
+  result.toFixed(); // 此处 hover result 提示类型是 number，不会提示错误
+}
+```
+
+#### void
+
+void 类型仅适用于表示没有返回值的函数。即如果该函数没有返回值，那它的类型就是 void。
+
+#### never
+
+never 表示永远不会发生值的类型，比如定义一个统一抛出错误的函数，它的返回值类型就是 never。
+
+```ts
+function ThrowError(msg: string): never {
+  throw Error(msg);
+}
+```
 
 ## 函数
 
@@ -80,36 +167,6 @@ names.forEach((s) => {
 尽管参数 s 并没有添加类型注解，但 TypeScript 根据 forEach 函数的类型，以及传入的数组的类型，最后推断出了 s 的类型。
 
 这个过程被称为**上下文推断（contextual typing）**
-
-## 对象类型
-
-定义一个对象类型，我们只需要简单的列出它的属性和对应的类型。
-
-```ts
-// The parameter's type annotation is an object type
-function printCoord(pt: { x: number; y: number }) {
-  console.log("The coordinate's x value is " + pt.x);
-  console.log("The coordinate's y value is " + pt.y);
-}
-printCoord({ x: 3, y: 7 });
-```
-
-我们给参数添加了一个类型，该类型有两个属性, x 和 y，两个都是 number 类型。你可以使用`,`或者 `;` 分开属性，最后一个属性的分隔符加不加都行
-
-每个属性对应的类型是可选的，如果不指定，默认使用 `any` 类型。
-
-### 可选属性
-
-对象类型可以指定一些甚至所有的属性为可选的，只需要在属性名后添加一个 ?
-
-```ts
-function printName(obj: { first: string; last?: string }) {
-  // ...
-}
-// Both OK
-printName({ first: "Bob" });
-printName({ first: "Alice", last: "Alisson" });
-```
 
 ## 联合类型
 
