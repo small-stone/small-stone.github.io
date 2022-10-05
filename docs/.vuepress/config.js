@@ -1,5 +1,6 @@
 module.exports = {
   theme: "gungnir",
+  dest: "dist",
   title: "小石头的前端博客",
   codeTheme: "coy",
   themeConfig: {
