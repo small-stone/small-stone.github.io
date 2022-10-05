@@ -2,9 +2,6 @@ module.exports = {
   theme: "gungnir",
   title: "小石头的前端博客",
   codeTheme: "coy",
-  markdown: {
-    lineNumbers: true,
-  },
   themeConfig: {
     search: false,
     nav: [
@@ -29,7 +26,7 @@ module.exports = {
     personalInfo: {
       name: "小石头",
       avatar: "/avatar.jpeg",
-      description: "A cool dragon lost in human world.",
+      description: "且将新火试新茶。诗酒趁年华。",
       // 可选：社交平台账号，将在首页和移动端侧边栏显示
       sns: {
         github: "small-stone", // Github
