@@ -748,3 +748,127 @@ function reflectArray<P>(param: P[]) {
 }
 const reflectArr = reflectArray([1, "1"]); // reflectArr 是 (string | number)[]
 ```
+
+### 泛型类型
+
+```ts
+const reflectFn: <P>(param: P) => P = reflect; // ok
+```
+
+这里我们为变量 reflectFn 显式添加了泛型类型注解，并将 reflect 函数作为值赋给了它。
+
+我们也可以把 reflectFn 的类型注解提取为一个能被复用的类型别名或者接口，如下代码所示：
+
+```ts
+type ReflectFuncton = <P>(param: P) => P;
+interface IReflectFuncton {
+  <P>(param: P): P;
+}
+const reflectFn2: ReflectFuncton = reflect;
+const reflectFn3: IReflectFuncton = reflect;
+```
+
+## declare
+
+### 声明变量
+
+声明变量的语法： declare (var|let|const) 变量名称: 变量类型 ，具体示例如下：
+
+```ts
+declare var val1: string;
+declare let val2: number;
+declare const val3: boolean;
+
+val1 = "1";
+val1 = "2";
+val2 = 1;
+val2 = "2"; // TS2322: Type 'string' is not assignable to type 'number'.
+val3 = true; // TS2588: Cannot assign to 'val3' because it is a constant.
+```
+
+### 声明函数
+
+declare 关键字时，我们不需要编写声明的变量、函数、类的具体实现（因为变量、函数、类在其他库中已经实现了），只需要声明其类型即可
+
+```ts
+declare function toString(x: number): string;
+const x = toString(1); // => string
+```
+
+### 声明模块
+
+TypeScript 与 ES6 一样，任何包含顶级 import 或 export 的文件都会被当作一个模块。我们可以通过声明模块类型，为缺少 TypeScript 类型定义的三方库或者文件补齐类型定义
+
+```ts
+// lodash.d.ts
+declare module "lodash" {
+  export function first<T extends unknown>(array: T[]): T;
+}
+
+// index.ts
+import { first } from "lodash";
+first([1, 2, 3]); // => number;
+```
+
+### declare 文件
+
+TypeScript 并不知道我们通过 import 导入的文件是什么类型，所以需要使用 declare 声明导入的文件类型
+
+```ts
+declare module "*.jpg" {
+  const src: string;
+  export default src;
+}
+
+declare module "*.png" {
+  const src: string;
+  export default src;
+}
+```
+
+## 官方工具
+
+在 TypeScript 中提供了许多自带的工具类型，因为这些类型都是全局可用的，所以无须导入即可直接使用。
+
+### Partial
+
+Partial 工具类型可以将一个类型的所有属性变为可选的
+
+```ts
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+};
+interface Person {
+  name: string;
+  age?: number;
+  weight?: number;
+}
+type PartialPerson = Partial<Person>;
+
+// 相当于
+interface PartialPerson {
+  name?: string;
+  age?: number;
+  weight?: number;
+}
+```
+
+### Required
+
+与 Partial 工具类型相反，Required 工具类型可以将给定类型的所有属性变为必填的
+
+```ts
+type Required<T> = {
+  [P in keyof T]-?: T[P];
+};
+type RequiredPerson = Required<Person>;
+
+// 相当于
+interface RequiredPerson {
+  name: string;
+  age: number;
+  weight: number;
+}
+```
+
+### Readonly
